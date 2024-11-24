@@ -1,0 +1,30 @@
+{
+    "name": "kobeni/framework",
+    "description": "Making an api more easy with php-kobeni",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "KobeniFramework\\": "src/KobeniFramework/",
+            "App\\": "src/App/"
+        }
+    },
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php post-install.php"
+        ],
+        "post-create-project-cmd": [
+          "php post-install.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Haichhan",
+            "email": "renkouzuki815@gmail.com"
+        }
+    ]
+}
