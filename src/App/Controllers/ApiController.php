@@ -2,32 +2,49 @@
 
 namespace App\Controllers;
 
-use KobeniFramework\Routing\Router;
-use PDO;
-use Exception;
+use KobeniFramework\Controllers\Controller;
+use PDOException;
 
-class ApiController
+class ApiController extends Controller
 {
-    protected $pdo;
-
-    public function __construct()
-    {
-        $this->pdo = (new Router())->connectDatabase();
-    }
-
-    public function getUser()
+    public function index()
     {
         try {
-            $stmt = $this->pdo->query("SELECT * FROM users WHERE id = 1");
-            if ($stmt->rowCount() > 0) {
-                $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $this->json([
+                'status' => 'success',
+                'message' => 'Hello World!'
+            ]);
+        } catch (PDOException $e) {
+            return $this->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 
-                return json_encode($users);
-            } else {
-                return json_encode(["message" => "No users found"]);
+    public function getUser($id = 1)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt->execute([$id]);
+
+            if ($stmt->rowCount() > 0) {
+                $user = $stmt->fetch();
+                return $this->json([
+                    'status' => 'success',
+                    'data' => $user
+                ]);
             }
-        } catch (Exception $e) {
-            return json_encode(["error" => "Database query failed: " . $e->getMessage()]);
+
+            return $this->json([
+                'status' => 'error',
+                'message' => 'User not found'
+            ], 404);
+        } catch (PDOException $e) {
+            return $this->json([
+                'status' => 'error',
+                'message' => 'Database error: ' . $e->getMessage()
+            ], 500);
         }
     }
 }
