@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a2620e075b14bcd042f8a6120aca65a",
+    "content-hash": "2b93fe8960b45f95a571094abb52e8fc",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -144,6 +144,41 @@
             "time": "2024-07-20T21:41:07+00:00"
         },
         {
+            "name": "renkouzuki/kobeni-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/renkouzuki/kobeni-core.git",
+                "reference": "8f63dd24cf05fb63d5fd932bb9173d12ca06421f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/renkouzuki/kobeni-core/zipball/8f63dd24cf05fb63d5fd932bb9173d12ca06421f",
+                "reference": "8f63dd24cf05fb63d5fd932bb9173d12ca06421f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KobeniFramework\\": "src/KobeniFramework/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Kobeni Framework core",
+            "support": {
+                "issues": "https://github.com/renkouzuki/kobeni-core/issues",
+                "source": "https://github.com/renkouzuki/kobeni-core/tree/master"
+            },
+            "time": "2024-12-14T17:52:44+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.31.0",
             "source": {
@@ -169,8 +204,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -248,8 +283,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -322,8 +357,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -470,7 +505,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "renkouzuki/kobeni-core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
