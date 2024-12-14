@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: #f3f4f6;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 { color: #3b82f6; }
-    </style>
+    <title>Kobeni Framework</title>
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1><?php echo $title; ?></h1>
-        <p>Your lightweight PHP framework</p>
+    <div class="hero-container">
+        <div class="panel panel-left">
+            <div class="overlay"></div>
+            <div class="decorative-text decorative-text-left">FRAMEWORK</div>
+        </div>
+        <div class="panel panel-center">
+            <div class="overlay"></div>
+            <div class="content">
+                <h1 class="title"><?php echo $title; ?></h1>
+                <p class="subtitle">Lightweight, Fast, and Full of Dreams ✨</p>
+                <p class="subtitle">Crafted for dreamers like you 🎸</p>
+                <a href="#" class="cta-button">EXPLORE DOCS 🚀</a>
+            </div>
+        </div>
+        <div class="panel panel-right">
+            <div class="overlay"></div>
+            <div class="decorative-text decorative-text-right">2024</div>
+        </div>
     </div>
 </body>
+
 </html>

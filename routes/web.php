@@ -1,3 +1,3 @@
 <?php
 
-$router->get('/test', 'App\Controllers\WebController@hello');
+$router->get('/', 'App\Controllers\WebController@hello');
