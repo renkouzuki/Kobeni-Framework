@@ -1,8 +1,8 @@
 <?php
 
+use App\Console\ConsoleApplication;
+
 require __DIR__ . '/vendor/autoload.php';
 
-use KobeniFramework\Console\Application;
-
-$app = new Application();
+$app = new ConsoleApplication();
 $app->run($argv);
