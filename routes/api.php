@@ -8,3 +8,14 @@ $router->group(['prefix' => 'api'], function ($router) {
     $router->put('/users/{id}', 'App\Controllers\ApiController@update');
     $router->delete('/users/{id}', 'App\Controllers\ApiController@delete');
 });
+
+// $router->get('test', [
+//     'uses' => 'App\Controllers\ApiController@test',
+//     'middleware' => ['Test']
+// ]);
+
+// Or with group
+$router->group(['middleware' => ['Test']], function($router) {
+    $router->get('test', 'App\Controllers\ApiController@test');
+});
+

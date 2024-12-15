@@ -116,4 +116,8 @@ class WebController extends Controller
             $this->redirect('/examples?error=' . urlencode($e->getMessage()));
         }
     }
+
+    public function comp(){
+        return $this->view('component');
+    }
 }

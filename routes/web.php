@@ -2,6 +2,8 @@
 
 $router->get('/', 'App\Controllers\HellowController@hello');
 
+$router->get('/comp' , 'App\Controllers\WebController@comp');
+
 $router->get('examples', 'App\Controllers\WebController@index');
 $router->get('examples/create', 'App\Controllers\WebController@create');
 $router->post('examples', 'App\Controllers\WebController@store');

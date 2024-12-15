@@ -82,7 +82,7 @@ class ApiController extends Controller
             $stmt->execute([$data['name']]);
 
             $row = $stmt->fetch();
-            
+
             return $this->json([
                 'data' => $row
             ]);
@@ -154,5 +154,12 @@ class ApiController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function test()
+    {
+        return $this->json([
+            'message' => 'Test route works!'
+        ]);
     }
 }
