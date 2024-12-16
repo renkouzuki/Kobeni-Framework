@@ -149,12 +149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/renkouzuki/kobeni-core.git",
-                "reference": "c50d263e181e8efca88bc329c30110a2fc9b7a6a"
+                "reference": "4d055d2f420101f77abaa27ec7948cbe14070a3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/renkouzuki/kobeni-core/zipball/c50d263e181e8efca88bc329c30110a2fc9b7a6a",
-                "reference": "c50d263e181e8efca88bc329c30110a2fc9b7a6a",
+                "url": "https://api.github.com/repos/renkouzuki/kobeni-core/zipball/4d055d2f420101f77abaa27ec7948cbe14070a3b",
+                "reference": "4d055d2f420101f77abaa27ec7948cbe14070a3b",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 "issues": "https://github.com/renkouzuki/kobeni-core/issues",
                 "source": "https://github.com/renkouzuki/kobeni-core/tree/master"
             },
-            "time": "2024-12-16T12:33:28+00:00"
+            "time": "2024-12-16T22:43:50+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

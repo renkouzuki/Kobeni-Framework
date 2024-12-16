@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use KobeniFramework\Controllers\Controller;
+use KobeniFramework\Database\Kobeni;
 use PDOException;
 
 class ApiController extends Controller
@@ -162,4 +163,96 @@ class ApiController extends Controller
             'message' => 'Test route works!'
         ]);
     }
+
+    public function testing()
+    {
+        try{
+            $db = new Kobeni();
+
+            $data = $this->getRequestData();
+
+            $user = $db->update('role' ,['id' => '359f3a55-bbfc-11ef-8a05-54bf649bdd45 '], [
+                'description' => $data['descrip']
+            ],['return' => true]);
+        
+            return $this->json($user);
+        }catch(PDOException $e){
+            return $this->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }
+
+
+// $user = $db->findMany(
+//     'role',
+//     [], ///// this just my condition param
+//     [
+//         'select' => [
+//             'id',
+//             'name',
+//             'description'
+//         ],
+//         'include' => [
+//             'user' => [
+//                 'select' => [
+//                     'id',
+//                     'name',
+//                     'email',
+//                     'role_id'
+//                 ],
+//                 'include' => [
+//                     'post' => [
+//                         'where' => [
+//                             'OR' => [
+//                                 ['id' => '77ec9414-bbda-11ef-8a05-54bf649bdd45']
+//                             ]
+//                         ],
+//                         'select' => [
+//                             'id',
+//                             'title',
+//                             'content',
+//                             'user_id',
+//                             'published_at'
+//                         ]
+//                     ] 
+//                 ]
+//             ]
+//         ]
+//     ]
+// );
+
+// $user = $db->findUnique(
+//     'role',
+//     ['id' => $id],
+//     [
+//         'select' => [
+//             'id',
+//             'name',
+//             'description'
+//         ],
+//         'include' => [
+//             'user' => [
+//                 'select' => [
+//                     'id',
+//                     'name',
+//                     'email',
+//                     'role_id'
+//                 ],
+//                 'include' => [
+//                     'post' => [
+//                         'select' => [
+//                             'id',
+//                             'title',
+//                             'content',
+//                             'user_id',
+//                             'published_at'
+//                         ]
+//                     ] 
+//                 ]
+//             ]
+//         ]
+//     ]
+// );

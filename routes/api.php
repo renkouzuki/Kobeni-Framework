@@ -19,3 +19,4 @@ $router->group(['middleware' => ['Test']], function($router) {
     $router->get('test', 'App\Controllers\ApiController@test');
 });
 
+$router->post('/testquery' , 'App\Controllers\ApiController@testing');
