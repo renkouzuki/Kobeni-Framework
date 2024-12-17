@@ -16,7 +16,7 @@ return [
               ->string('name')->unique()
               ->string('email')->unique()
               ->string('password')
-              ->belongsTo('Role') 
+              ->belongsTo('Role', null , 'id' , true) 
               ->hasMany('Post') 
               ->belongsToMany('Project', 'user_projects')
               ->datetime('created_at')->default('CURRENT_TIMESTAMP')

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use KobeniFramework\Controllers\Controller;
 use KobeniFramework\Database\Kobeni;
+use KobeniFramework\Log\Log;
 use PDOException;
 
 class ApiController extends Controller
@@ -171,10 +172,12 @@ class ApiController extends Controller
 
             $data = $this->getRequestData();
 
-            $user = $db->update('role' ,['id' => '359f3a55-bbfc-11ef-8a05-54bf649bdd45 '], [
+            $user = $db->create('role', [
+                'name' => $data->name,
                 'description' => $data['descrip']
             ],['return' => true]);
         
+            Log::info('something happend! bro');
             return $this->json($user);
         }catch(PDOException $e){
             return $this->json([

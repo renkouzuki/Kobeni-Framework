@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use KobeniFramework\Console\Command;
+use KobeniFramework\Log\Logger;
 
 class testing extends Command
 {
