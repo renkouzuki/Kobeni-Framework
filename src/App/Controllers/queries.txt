@@ -1,0 +1,70 @@
+// $user = $db->findMany(
+//     'role',
+//     [], ///// this just my condition param
+//     [
+//         'select' => [
+//             'id',
+//             'name',
+//             'description'
+//         ],
+//         'include' => [
+//             'user' => [
+//                 'select' => [
+//                     'id',
+//                     'name',
+//                     'email',
+//                     'role_id'
+//                 ],
+//                 'include' => [
+//                     'post' => [
+//                         'where' => [
+//                             'OR' => [
+//                                 ['id' => '77ec9414-bbda-11ef-8a05-54bf649bdd45']
+//                             ]
+//                         ],
+//                         'select' => [
+//                             'id',
+//                             'title',
+//                             'content',
+//                             'user_id',
+//                             'published_at'
+//                         ]
+//                     ] 
+//                 ]
+//             ]
+//         ]
+//     ]
+// );
+
+// $user = $db->findUnique(
+//     'role',
+//     ['id' => $id],
+//     [
+//         'select' => [
+//             'id',
+//             'name',
+//             'description'
+//         ],
+//         'include' => [
+//             'user' => [
+//                 'select' => [
+//                     'id',
+//                     'name',
+//                     'email',
+//                     'role_id'
+//                 ],
+//                 'include' => [
+//                     'post' => [
+//                         'select' => [
+//                             'id',
+//                             'title',
+//                             'content',
+//                             'user_id',
+//                             'published_at'
+//                         ]
+//                     ] 
+//                 ]
+//             ]
+//         ]
+//     ]
+// );

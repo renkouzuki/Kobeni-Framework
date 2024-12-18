@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 
-use KobeniFramework\Controllers\Controller;
-use KobeniFramework\Database\Kobeni;
+use Exception;
+use KobeniFramework\Cache\Caching;
 use KobeniFramework\Log\Log;
+use KobeniFramework\Validation\Exceptions\ValidationException;
+use KobeniFramework\Validation\Validator;
 use PDOException;
 
-class ApiController extends Controller
+class ApiController extends MainController
 {
     public function index()
     {
@@ -74,14 +76,12 @@ class ApiController extends Controller
     public function store()
     {
         try {
-            $data = $this->getRequestData();
-
             $stmt = $this->db->prepare("
                 INSERT INTO example (name) 
                 VALUES (?)
             ");
 
-            $stmt->execute([$data['name']]);
+            $stmt->execute([$this->req['name']]);
 
             $row = $stmt->fetch();
 
@@ -109,7 +109,7 @@ class ApiController extends Controller
             ");
 
             $stmt->execute([
-                $data['name'],
+                $this->req['name'],
                 $id
             ]);
 
@@ -167,19 +167,37 @@ class ApiController extends Controller
 
     public function testing()
     {
-        try{
-            $db = new Kobeni();
+        try {
+            $validator = Validator::make($this->req);
 
-            $data = $this->getRequestData();
+            if(!$validator->validate([
+                'name' => required()->string()->min(3)->max(255)->unique('role'),
+                'descrip' => optional()->string()->max(1000)
+            ])){
+                throw new ValidationException($validator->getErrors());
+            }
 
-            $user = $db->create('role', [
-                'name' => $data->name,
-                'description' => $data['descrip']
-            ],['return' => true]);
-        
+            $user = $this->kobeni->create('role', [
+                'name' => $this->req->name,
+                'description' => $this->req['descrip']
+            ], ['return' => true]);
+
+            // Caching::remember('roles', 3600, function () use ($user) {
+            //     return $user;
+            // });
+
             Log::info('something happend! bro');
-            return $this->json($user);
-        }catch(PDOException $e){
+            return $this->json([
+                'status' => true,
+                'message' => 'success',
+                'data' => $user
+            ]);
+        } catch (ValidationException $e) {
+            return $this->json([
+                'status' => false,
+                'errors' => $e->getErrors()
+            ], 422);
+        } catch (Exception $e) {
             return $this->json([
                 'status' => false,
                 'message' => $e->getMessage()
@@ -187,75 +205,3 @@ class ApiController extends Controller
         }
     }
 }
-
-
-// $user = $db->findMany(
-//     'role',
-//     [], ///// this just my condition param
-//     [
-//         'select' => [
-//             'id',
-//             'name',
-//             'description'
-//         ],
-//         'include' => [
-//             'user' => [
-//                 'select' => [
-//                     'id',
-//                     'name',
-//                     'email',
-//                     'role_id'
-//                 ],
-//                 'include' => [
-//                     'post' => [
-//                         'where' => [
-//                             'OR' => [
-//                                 ['id' => '77ec9414-bbda-11ef-8a05-54bf649bdd45']
-//                             ]
-//                         ],
-//                         'select' => [
-//                             'id',
-//                             'title',
-//                             'content',
-//                             'user_id',
-//                             'published_at'
-//                         ]
-//                     ] 
-//                 ]
-//             ]
-//         ]
-//     ]
-// );
-
-// $user = $db->findUnique(
-//     'role',
-//     ['id' => $id],
-//     [
-//         'select' => [
-//             'id',
-//             'name',
-//             'description'
-//         ],
-//         'include' => [
-//             'user' => [
-//                 'select' => [
-//                     'id',
-//                     'name',
-//                     'email',
-//                     'role_id'
-//                 ],
-//                 'include' => [
-//                     'post' => [
-//                         'select' => [
-//                             'id',
-//                             'title',
-//                             'content',
-//                             'user_id',
-//                             'published_at'
-//                         ]
-//                     ] 
-//                 ]
-//             ]
-//         ]
-//     ]
-// );

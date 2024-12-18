@@ -17,12 +17,12 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'example'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'name',
-  2 => 'created_at',
-  3 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'name',
+                2 => 'created_at',
+                3 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -65,15 +65,15 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'user'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'name',
-  2 => 'email',
-  3 => 'password',
-  4 => 'role_id',
-  5 => 'created_at',
-  6 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'name',
+                2 => 'email',
+                3 => 'password',
+                4 => 'role_id',
+                5 => 'created_at',
+                6 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -132,13 +132,13 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'role'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'name',
-  2 => 'description',
-  3 => 'created_at',
-  4 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'name',
+                2 => 'description',
+                3 => 'created_at',
+                4 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -187,17 +187,17 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'post'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'title',
-  2 => 'description',
-  3 => 'content',
-  4 => 'user_id',
-  5 => 'category_id',
-  6 => 'published_at',
-  7 => 'created_at',
-  8 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'title',
+                2 => 'description',
+                3 => 'content',
+                4 => 'user_id',
+                5 => 'category_id',
+                6 => 'published_at',
+                7 => 'created_at',
+                8 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -268,13 +268,13 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'category'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'name',
-  2 => 'slug',
-  3 => 'created_at',
-  4 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'name',
+                2 => 'slug',
+                3 => 'created_at',
+                4 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -319,13 +319,13 @@ class Migration_2024_12_17_164708 extends Migration
         } else {
             $currentColumns = $this->db->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema = 'testingkobeni' AND table_name = 'project'");
             $existingColumns = array_column($currentColumns, "COLUMN_NAME");
-            $schemaColumns = array (
-  0 => 'id',
-  1 => 'name',
-  2 => 'description',
-  3 => 'created_at',
-  4 => 'updated_at',
-);
+            $schemaColumns = array(
+                0 => 'id',
+                1 => 'name',
+                2 => 'description',
+                3 => 'created_at',
+                4 => 'updated_at',
+            );
             $columnsToRemove = array_diff($existingColumns, $schemaColumns);
             foreach ($columnsToRemove as $column) {
                 if ($column !== "id") {
@@ -359,7 +359,7 @@ class Migration_2024_12_17_164708 extends Migration
         }
         $this->db->query("SET FOREIGN_KEY_CHECKS=1;");
     }
-    
+
     public function down(): void
     {
         $this->dropTable("project");

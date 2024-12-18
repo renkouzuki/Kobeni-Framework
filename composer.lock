@@ -149,12 +149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/renkouzuki/kobeni-core.git",
-                "reference": "b5f0bb770d747b4bea48db450351f051d2c9558d"
+                "reference": "62532c44d5e9660f0d682318d9b8dd2c44b29383"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/renkouzuki/kobeni-core/zipball/b5f0bb770d747b4bea48db450351f051d2c9558d",
-                "reference": "b5f0bb770d747b4bea48db450351f051d2c9558d",
+                "url": "https://api.github.com/repos/renkouzuki/kobeni-core/zipball/62532c44d5e9660f0d682318d9b8dd2c44b29383",
+                "reference": "62532c44d5e9660f0d682318d9b8dd2c44b29383",
                 "shasum": ""
             },
             "require": {
@@ -163,6 +163,9 @@
             "default-branch": true,
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/KobeniFramework/Validation/helpers.php"
+                ],
                 "psr-4": {
                     "KobeniFramework\\": "src/KobeniFramework/"
                 }
@@ -176,7 +179,7 @@
                 "issues": "https://github.com/renkouzuki/kobeni-core/issues",
                 "source": "https://github.com/renkouzuki/kobeni-core/tree/master"
             },
-            "time": "2024-12-17T17:57:41+00:00"
+            "time": "2024-12-18T08:07:33+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
