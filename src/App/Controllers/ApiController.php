@@ -5,16 +5,14 @@ namespace App\Controllers;
 use Exception;
 use KobeniFramework\Cache\Caching;
 use KobeniFramework\Log\Log;
-use KobeniFramework\Validation\Exceptions\ValidationException;
-use KobeniFramework\Validation\Validator;
 use PDOException;
 
-class ApiController extends MainController
+class ApiController extends KobeniController
 {
     public function index()
     {
         try {
-            $stmt = $this->db->prepare("
+            $stmt = $this->db->query("
                 SELECT 
                     id, 
                     name, 
@@ -86,7 +84,7 @@ class ApiController extends MainController
             $row = $stmt->fetch();
 
             return $this->json([
-                'data' => $row
+                'status' => 'success'
             ]);
         } catch (PDOException $e) {
             return $this->json([
@@ -168,18 +166,15 @@ class ApiController extends MainController
     public function testing()
     {
         try {
-            $validator = Validator::make($this->req);
 
-            if(!$validator->validate([
+            $data = $this->validate([
                 'name' => required()->string()->min(3)->max(255)->unique('role'),
                 'descrip' => optional()->string()->max(1000)
-            ])){
-                throw new ValidationException($validator->getErrors());
-            }
+            ]);
 
             $user = $this->kobeni->create('role', [
-                'name' => $this->req->name,
-                'description' => $this->req['descrip']
+                'name' => $data->name,
+                'description' => $data['descrip']
             ], ['return' => true]);
 
             // Caching::remember('roles', 3600, function () use ($user) {
@@ -192,16 +187,11 @@ class ApiController extends MainController
                 'message' => 'success',
                 'data' => $user
             ]);
-        } catch (ValidationException $e) {
-            return $this->json([
-                'status' => false,
-                'errors' => $e->getErrors()
-            ], 422);
         } catch (Exception $e) {
             return $this->json([
                 'status' => false,
-                'message' => $e->getMessage()
-            ]);
+                'message' => $this->error($e->getCode() , $e->getMessage())
+            ],$e->getCode());
         }
     }
 }
