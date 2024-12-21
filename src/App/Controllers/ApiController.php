@@ -182,16 +182,9 @@ class ApiController extends KobeniController
             // });
 
             Log::info('something happend! bro');
-            return $this->json([
-                'status' => true,
-                'message' => 'success',
-                'data' => $user
-            ]);
+            return $this->response($user);
         } catch (Exception $e) {
-            return $this->json([
-                'status' => false,
-                'message' => $this->error($e->getCode() , $e->getMessage())
-            ],$e->getCode());
+            return $this->error($e->getCode() , $e->getMessage());
         }
     }
 }
