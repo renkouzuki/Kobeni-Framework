@@ -15,8 +15,16 @@ $router->group(['prefix' => 'api'], function ($router) {
 // ]);
 
 // Or with group
-$router->group(['middleware' => ['Test']], function($router) {
+$router->group(['middleware' => ['Test']], function ($router) {
     $router->get('test', 'App\Controllers\ApiController@test');
 });
 
-$router->post('/testquery' , 'App\Controllers\ApiController@testing');
+$router->post('/testquery', 'App\Controllers\ApiController@testing');
+
+$router->post('/register', 'App\Controllers\AuthController@register');
+$router->post('/login', 'App\Controllers\AuthController@login');
+
+$router->group(['middleware' => ['auth']], function ($router) {
+    $router->get('/user', 'App\Controllers\AuthController@user');
+    $router->post('/logout', 'App\Controllers\AuthController@logout');
+});
