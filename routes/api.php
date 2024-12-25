@@ -24,7 +24,8 @@ $router->post('/testquery', 'App\Controllers\ApiController@testing');
 $router->post('/register', 'App\Controllers\AuthController@register');
 $router->post('/login', 'App\Controllers\AuthController@login');
 
-$router->group(['middleware' => ['auth']], function ($router) {
+$router->group(['middleware' => ['Kobeni:Auth']], function ($router) {
     $router->get('/user', 'App\Controllers\AuthController@user');
     $router->post('/logout', 'App\Controllers\AuthController@logout');
+    
 });

@@ -2,12 +2,9 @@
 
 namespace App\Controllers;
 
-use KobeniFramework\Auth\HasAuthentication;
 use KobeniFramework\Controllers\Controller;
 
 class KobeniController extends Controller{
-
-    use HasAuthentication;
 
     public $kobeni;
     public $req;

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Exception;
 use KobeniFramework\Cache\Caching;
+use KobeniFramework\CustomMethods\bruh;
 use KobeniFramework\Log\Log;
 use PDOException;
 
@@ -187,4 +188,5 @@ class ApiController extends KobeniController
             return $this->error($e->getCode() , $e->getMessage());
         }
     }
+
 }
